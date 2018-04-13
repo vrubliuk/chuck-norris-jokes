@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import './App.css'
 import Category from './components/Category/Category'
+import Joke from './components/Joke/Joke'
+import Form from './components/Form/Form'
 
 class App extends Component {
 
@@ -9,7 +11,7 @@ class App extends Component {
     categories: ['all categories'],
     currentCategory: 'all categories',
     jokes: [],
-    jokesQuantity: 1,
+    jokesQuantity: 5,
   }
 
 
@@ -36,27 +38,24 @@ class App extends Component {
   }
 
   setJokesQuantity = (e) => {
+    e.preventDefault()
     this.setState({
       jokesQuantity: e.target.value
     })
   }
 
-  getJokes = (e) => {
-    e.preventDefault()
+  getJokes = () => {
     let url = `http://api.icndb.com/jokes/random/${this.state.jokesQuantity}`
     axios.get(url)
       .then(response => {
-  
-        console.log(typeof response.data.value)
-
-
-        // let categories = this.state.categories;
-        // response.data.value.forEach(elem => {
-        //   categories.push(elem);
-        // })
-        // this.setState({
-        //   categories
-        // })
+        let jokes = []
+        response.data.value.forEach(elem => {
+          jokes.push(elem.joke.replace(/&quot;/g, '"'))
+        })
+         this.setState({
+          jokes
+        })
+      
       })
       .catch(error => {
         alert(error)
@@ -67,7 +66,6 @@ class App extends Component {
   componentDidMount() {
     this.getCategories()
   }
-
 
   render() {
     return (
@@ -80,15 +78,17 @@ class App extends Component {
             })}
           </aside>
           <section className="Jokes">
+            <Form jokesQuantity={this.state.jokesQuantity} setJokesQuantity={this.setJokesQuantity} getJokes={this.getJokes}></Form>
+
             {/* <div>
-              <input type="number" name="" id="" min="1" max="10"/>
-              <button onClick={this.getCategories} ><i class="fa fa-refresh" aria-hidden="true"></i></button>
-            </div> */}
-            <form >
               <input type="number" name="quantity" min="1" max="10" value={this.state.jokesQuantity} onChange={this.setJokesQuantity} />
               <button onClick={this.getJokes}><i className="fa fa-refresh" aria-hidden="true"></i></button>
-            </form>
-            
+            </div> */}
+            <div>
+              { this.state.jokes.map(joke => {
+                return <Joke>{joke}</Joke>
+              })}
+            </div>
           </section>
         </main>
       </div>

@@ -25,11 +25,11 @@
 }
 
 .Jokes {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 80%;
   display: inline-block;
   vertical-align: top;
-  padding: 10px 0;
+  padding: 10px;
 }
 
 

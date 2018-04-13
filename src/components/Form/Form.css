@@ -1,0 +1,29 @@
+.Form input {
+  border: 1px solid #cf4647;
+  padding: 0; 
+  font-size: 18px;
+  /* padding: 10px; */
+  box-sizing: content-box;
+  height: 40px;
+  width: 84px;
+  vertical-align: top;
+  text-align: center;
+}
+.Form button {
+  /* border: 1px solid #cf4647; */
+  border: none;
+  padding: 0;
+  font-size: 22px;
+  background: #cf4647;
+  color: white;
+  cursor: pointer;
+  /* padding: 10px; */
+  box-sizing: content-box;
+  height: 42px;
+  width: 42px;
+  vertical-align: top;
+}
+/* .Form button i {
+  font-size: 18px;
+} */
+
