@@ -1,0 +1,27 @@
+.Category {
+  border-left: 10px solid white;
+  border-right: 10px solid white;
+  font-size: 18px;
+  padding: 0 10px;
+  color: black;
+  /* margin: 10px 0; */
+}
+
+.Category > div {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.Category > div:hover {
+
+  background: #e6e6e6;
+}
+
+
+.Category-active {
+  border-left: 10px solid #cf4647;
+  color: #cf4647;
+}
+
+
+
