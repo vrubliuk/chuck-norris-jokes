@@ -18,7 +18,7 @@ class App extends Component {
   //------------------METHODS-----------------------
 
   getCategories = () => {
-    axios.get('http://api.icndb.com/categories')
+    axios.get('https://api.icndb.com/categories')
       .then(response => {
         let categories = this.state.categories
         response.data.value.forEach(elem => {
@@ -37,9 +37,9 @@ class App extends Component {
     if (this.validateInput()) {
       let url
       if (this.state.currentCategory === 'all categories') {
-        url = `http://api.icndb.com/jokes/random/${this.state.jokesQuantity}`
+        url = `https://api.icndb.com/jokes/random/${this.state.jokesQuantity}`
       } else {
-        url = `http://api.icndb.com/jokes/random/${this.state.jokesQuantity}/?limitTo=[${this.state.currentCategory}]`
+        url = `https://api.icndb.com/jokes/random/${this.state.jokesQuantity}/?limitTo=[${this.state.currentCategory}]`
       }
       axios.get(url)
         .then(response => {
