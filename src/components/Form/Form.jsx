@@ -3,7 +3,6 @@ import './Form.css'
 
 const form = (props) => {
   let tooltipText = 'Pick a number between 1 and 10'
-
   return (
     <form className="Form">
       <div className="Form__tooltip">

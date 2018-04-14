@@ -20,9 +20,9 @@ class App extends Component {
   getCategories = () => {
     axios.get('http://api.icndb.com/categories')
       .then(response => {
-        let categories = this.state.categories;
+        let categories = this.state.categories
         response.data.value.forEach(elem => {
-          categories.push(elem);
+          categories.push(elem)
         })
         this.setState({
           categories
@@ -30,7 +30,7 @@ class App extends Component {
       })
       .catch(error => {
         alert(error)
-      });
+      })
   }
 
   getJokes = () => {
@@ -53,7 +53,7 @@ class App extends Component {
         })
         .catch(error => {
           alert(error)
-        });
+        })
     }
   }
 
@@ -73,7 +73,7 @@ class App extends Component {
         this.setState({
           showTooltip: false
         })
-      }, 1000);
+      }, 1000)
     }
   }
 
@@ -125,8 +125,8 @@ class App extends Component {
           </section>
         </main>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
