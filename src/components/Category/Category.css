@@ -1,20 +1,30 @@
 .Category {
   border-left: 10px solid white;
   border-right: 10px solid white;
-  font-size: 18px;
+  font-size: 20px;
   padding: 0 10px;
+
   color: black;
   /* margin: 10px 0; */
+}
+@media (max-width: 992px) {
+  .Category {
+    border-left: 10px solid #f2f2f2;
+    border-right: 10px solid #f2f2f2;
+  }
 }
 
 .Category > div {
   cursor: pointer;
-  padding: 10px;
+  padding: 0 10px;
+  height: 42px;
+  line-height: 42px;
 }
 
 .Category > div:hover {
 
   background: #f2f2f2;
+  background: #e6e6e6;
 }
 
 

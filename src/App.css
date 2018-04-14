@@ -1,7 +1,8 @@
 .App {
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh;
+  width: 100vw; */
   position: relative;
+  min-width: 300px;
 }
 
 .Header {
@@ -13,23 +14,31 @@
 
 .Content {
   font-size: 0;
-  vertical-align: top;
 }
   
 .Categories {
    width: 20%;
    display: inline-block;
-   font-size: 20px;
   vertical-align: top;
   padding: 10px 0;
 }
 
 .Jokes {
-  /* border: 1px solid blue; */
   width: 80%;
   display: inline-block;
   vertical-align: top;
   padding: 10px;
 }
 
+@media (max-width: 992px) {
+  .Header {
+    text-align: center;
+  }
 
+  .Categories, .Jokes {
+    width: 100%;
+  }
+  .Categories {
+    background: #f2f2f2;
+  }
+}
