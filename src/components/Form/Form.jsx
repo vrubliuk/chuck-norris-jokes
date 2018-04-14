@@ -7,10 +7,10 @@ const form = (props) => {
   return (
     <form className="Form">
       <div className="Form__tooltip">
-        <input type="text" value={props.jokesQuantity} onChange={props.setJokesQuantity} />
+        <input type="text" value={props.jokesQuantity} onChange={props.handleChangeJokesQuantityInput} />
         {props.showTooltip ? <span className="Form__tooltip__text">{tooltipText}</span> : null}
       </div>
-      <button onClick={props.getJokes}><i className="fa fa-refresh" aria-hidden="true" ></i></button>
+      <button onClick={props.handleClickRefreshButton}><i className="fa fa-refresh" aria-hidden="true" ></i></button>
     </form>
   )
 }

@@ -1,6 +1,7 @@
 .Form {
   text-align: left;
 }
+
 @media (max-width: 992px) {
   .Form {
     text-align: center;
@@ -11,12 +12,12 @@
   display: inline-block;
   position: relative;
 }
+
 .Form__tooltip__text {
   font-size: 14px;
-  /* visibility: hidden; */
   width: 120px;
   background-color: #3a3e64;
-  color: #fff;
+  color: white;
   text-align: center;
   padding: 5px 5px;
   position: absolute;
@@ -37,41 +38,32 @@
   border-color: transparent transparent#3a3e64 transparent;
 }
 
-/* .Form__tooltip:hover .Form__tooltip__text {
-  visibility: visible;
-} */
-
 .Form input {
   border: 1px solid #cf4647;
-  padding: 0; 
+  padding: 0;
   font-size: 18px;
-
   box-sizing: content-box;
   height: 40px;
   width: 84px;
   vertical-align: top;
   text-align: center;
 }
-.Form button {
 
+.Form button {
   border: none;
   padding: 0;
   font-size: 22px;
   background: #cf4647;
   color: white;
   cursor: pointer;
-  /* padding: 10px; */
   box-sizing: content-box;
   height: 42px;
   width: 84px;
   vertical-align: top;
   transition: 0.2s;
- 
-
 }
+
 .Form button:hover {
   font-size: 24px;
-  box-shadow: 0 0 2px  #cf4647;
+  box-shadow: 0 0 2px #cf4647;
 }
-
-

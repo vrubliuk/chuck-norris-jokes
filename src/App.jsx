@@ -11,10 +11,11 @@ class App extends Component {
     categories: ['all categories'],
     currentCategory: 'all categories',
     jokes: [],
-    // defaultJokesQuantity: '1',
-    jokesQuantity: '1',
+    jokesQuantity: 1,
     showTooltip: false
   }
+
+  //------------------METHODS-----------------------
 
   getCategories = () => {
     axios.get('http://api.icndb.com/categories')
@@ -32,22 +33,36 @@ class App extends Component {
       });
   }
 
-  setCategory = (categoryName) => {
-    this.setState({
-      currentCategory: categoryName
-    })
+  getJokes = () => {
+    if (this.validateInput()) {
+      let url
+      if (this.state.currentCategory === 'all categories') {
+        url = `http://api.icndb.com/jokes/random/${this.state.jokesQuantity}`
+      } else {
+        url = `http://api.icndb.com/jokes/random/${this.state.jokesQuantity}/?limitTo=[${this.state.currentCategory}]`
+      }
+      axios.get(url)
+        .then(response => {
+          let jokes = []
+          response.data.value.forEach(elem => {
+            jokes.push(elem.joke.replace(/&quot;/g, '"'))
+          })
+          this.setState({
+            jokes
+          })
+        })
+        .catch(error => {
+          alert(error)
+        });
+    }
   }
-
-  setJokesQuantity = (e) => {
-    this.setState({
-      jokesQuantity: e.target.value
-    })
-  }
-
 
   validateInput = () => {
     let jokesQuantity = Number(this.state.jokesQuantity)
-    if (jokesQuantity >= 1 && jokesQuantity <=10) {
+    if (jokesQuantity >= 1 && jokesQuantity <= 10) {
+      this.setState({
+        jokesQuantity
+      })
       return true
     } else {
       this.setState({
@@ -62,28 +77,34 @@ class App extends Component {
     }
   }
 
-  getJokes = (e) => {
+  // ------------------HANDLERS---------------------
+
+  handleClickRefreshButton = (e) => {
     e.preventDefault()
-    if (this.validateInput()) {
-      let url = `http://api.icndb.com/jokes/random/${this.state.jokesQuantity}`
-      axios.get(url)
-        .then(response => {
-          let jokes = []
-          response.data.value.forEach(elem => {
-            jokes.push(elem.joke.replace(/&quot;/g, '"'))
-          })
-           this.setState({
-            jokes
-          })
-        })
-        .catch(error => {
-          alert(error)
-        });
+    this.getJokes()
+  }
+
+  handleClickCategory = (categoryName) => {
+    if (categoryName !== this.state.currentCategory) {
+      this.setState({
+        currentCategory: categoryName
+      }, () => {
+        this.getJokes()
+      })
     }
   }
 
+  handleChangeJokesQuantityInput = (e) => {
+    this.setState({
+      jokesQuantity: e.target.value
+    })
+  }
+
+  //-----------------LIFECYCLE----------------
+
   componentDidMount() {
     this.getCategories()
+    this.getJokes()
   }
 
   render() {
@@ -93,14 +114,14 @@ class App extends Component {
         <main className="Content">
           <aside className="Categories">
             {this.state.categories.map(category => {
-              return <Category setCategory={this.setCategory.bind(this, category)} currentCategory={this.state.currentCategory}>{category}</Category>
+              return <Category handleClickCategory={this.handleClickCategory.bind(this, category)} currentCategory={this.state.currentCategory} key={category}>{category}</Category>
             })}
           </aside>
           <section className="Jokes">
-            <Form jokesQuantity={this.state.jokesQuantity} setJokesQuantity={this.setJokesQuantity} getJokes={this.getJokes} showTooltip={this.state.showTooltip}></Form>
-            { this.state.jokes.map(joke => {
-                return <Joke>{joke}</Joke>
-              })}
+            <Form jokesQuantity={this.state.jokesQuantity} handleChangeJokesQuantityInput={this.handleChangeJokesQuantityInput} handleClickRefreshButton={this.handleClickRefreshButton} showTooltip={this.state.showTooltip}></Form>
+            {this.state.jokes.map(joke => {
+              return <Joke key={joke}>{joke}</Joke>
+            })}
           </section>
         </main>
       </div>
