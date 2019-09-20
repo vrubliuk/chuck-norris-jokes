@@ -11,7 +11,7 @@ class App extends Component {
     categories: ['all categories'],
     currentCategory: 'all categories',
     jokes: [],
-    jokesQuantity: 1,
+    jokesQuantity: 10,
     showTooltip: false
   }
 
